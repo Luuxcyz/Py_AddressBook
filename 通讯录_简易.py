@@ -8,6 +8,7 @@ def show_contacts():
         for row in reader:
             print(row)
 
+
 # 测试
 # 定义函数：增加一条记录
 def add_contact():

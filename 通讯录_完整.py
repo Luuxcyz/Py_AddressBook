@@ -244,7 +244,6 @@ class ContactManager:
             rows = [row for row in reader if
                     (keyword in row[1]) or (keyword in row[2])]
 
-
         # 显示查找结果
         if not rows:
             messagebox.showinfo('提示', '未找到符合条件的记录！')
