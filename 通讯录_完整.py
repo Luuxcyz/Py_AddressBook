@@ -153,7 +153,7 @@ class ContactManager:
 
         id = int(self.tree.item(selection)['values'][0])
 
-        # Find the contact with the given ID
+        # 查找具有指定ID的联系人
         with open(self.file_path, 'r', newline='') as f:
             reader = csv.reader(f)
             next(reader)  # skip header row
@@ -163,13 +163,13 @@ class ContactManager:
                     contact = row
                     break
 
-        # Display a dialog box to allow the user to edit the contact information
+        # 显示一个对话框以允许用户编辑联系信息
         if contact:
             # Create a new window for editing the contact information
             edit_window = tk.Toplevel(self.master)
             edit_window.title('修改联系人信息')
 
-            # Create labels and entry fields for each contact field
+            # 为每个联系人字段创建标签和输入字段
             tk.Label(edit_window, text='姓名：').grid(row=0, column=0, padx=5, pady=5, sticky=tk.W)
             name_entry = tk.Entry(edit_window, width=30)
             name_entry.grid(row=0, column=1, padx=5, pady=5)
@@ -183,22 +183,22 @@ class ContactManager:
             address_entry.grid(row=2, column=1, padx=5, pady=5)
             address_entry.insert(0, contact[3])
 
-            # Create a save button that updates the contact information
+            # 创建更新联系信息的保存按钮
             def save_contact():
                 name = name_entry.get().strip()
                 phone = phone_entry.get().strip()
                 address = address_entry.get().strip()
 
-                # Validate the input
+                # 验证输入
                 if not name:
                     messagebox.showerror('错误', '请填写姓名！')
                     return
 
-                # Update the contact information in the CSV file
+                # 更新CSV文件中的联系方式
                 with open(self.file_path, 'r+', newline='') as f:
                     reader = csv.reader(f)
                     writer = csv.writer(f)
-                    next(reader)  # skip header row
+                    next(reader)  # 跳过标题行
                     rows = []
                     for row in reader:
                         if int(row[0]) == id:
@@ -211,13 +211,13 @@ class ContactManager:
                     writer.writerows(rows)
                     f.truncate()
 
-                # Refresh the display of all contacts
+                # 刷新所有联系人的显示
                 self.show_contacts()
 
-                # Show success message
+                # 显示成功消息
                 messagebox.showinfo('提示', '修改成功！')
 
-                # Close the edit window
+                # 关闭编辑窗口
                 edit_window.destroy()
 
             save_button = tk.Button(edit_window, text='保存',
