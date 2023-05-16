@@ -261,8 +261,6 @@ class ContactManager:
             self.entry_name.insert(0, values[1] if values[1] else values[2])
 
 
-
-
 def main():
     # 创建主窗口
     root = tk.Tk()
